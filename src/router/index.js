@@ -5,6 +5,10 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'*',
+    redirect:'/move'
+  },
 	{
 		path:"/move",
     name:'move',
@@ -17,6 +21,14 @@ const routes = [
 		path:'/our',
 		component:()=>import('@/views/our/our.vue')
 	},
+  {
+  	path:'/search',
+  	component:()=>import('@/views/search')
+  },
+  {
+  	path:'/city',
+  	component:()=>import('@/views/city')
+  },
 ]
 
 const router = new VueRouter({

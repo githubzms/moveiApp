@@ -1,26 +1,31 @@
 <template>
   <div>
-    <Header title="电影列表" :show="show" :left="left" />
+   <Header>
+         <div slot="title" class="van-nav-bar__title van-ellipsis">电影列表</div>
+   </Header>
     <div id="content">
       <div class="box-content">
-        <van-tabs @click="onClick">
+        <van-tabs @click="onClick" sticky :offset-top="46">
           <van-tab title="正在热映">
-            <ListCard/>
+            <keep-alive>
+              <router-view name="listcard"/>
+            </keep-alive>
           </van-tab>
           <van-tab title="即将上映">
-            <Jlist/>
+           <keep-alive>
+             <router-view name="jlist"/>
+           </keep-alive>
           </van-tab>
         </van-tabs>
       </div>
     </div>
     <TabBar />
+     <router-view name="detail"/>
   </div>
 </template>
 <script>
   import TabBar from '@/components/TabBar';
   import Header from '@/components/Header';
-  import ListCard from '@/components/ListCard';
-  import Jlist from '@/components/Jlist';
   export default {
     name: 'list',
     data() {
@@ -37,14 +42,12 @@
     components: {
       TabBar,
       Header,
-      ListCard,
-      Jlist
     }
   }
 </script>
 
 <style scoped>
- /* .box-content {
+  /* .box-content {
     padding: 0 10px;
   } */
 </style>

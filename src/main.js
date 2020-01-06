@@ -24,14 +24,17 @@ import {
   IndexAnchor,
   Search,
   Loading,
-  Dialog
+  Dialog,
+  List,
+  Toast
 } from 'vant'
 import 'vant/lib/index.css'
 Vue.prototype.axios = axios
 Vue.config.productionTip = false
 Vue.prototype.$dialog =Dialog
+Vue.prototype.$toast =Toast
 Vue.use(Button);
-// Vue.use(Dialog);
+Vue.use(List);
 Vue.use(NavBar);
 Vue.use(Icon);
 Vue.use(Loading);

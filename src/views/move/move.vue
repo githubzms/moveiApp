@@ -1,6 +1,12 @@
 <template>
   <div>
-    <Header title="电影首页" :show="show" :left="left" />
+    <Header>
+      <van-icon name="location-o" color="#1989fa" slot="left" @click="goCity" >
+        {{$store.state.city.nm}}
+      </van-icon>
+      <div slot="title" class="van-nav-bar__title van-ellipsis">来电</div>
+      <van-icon name="search" slot="right" @click="goSearch"/>
+    </Header>
     <div id="content">
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -28,7 +34,6 @@
     },
     activated() {
       this.axios.get('api/getLocation').then(res=>{
-        console.log(res);
         let msg=res.data.msg;
         if(msg==='ok'){
           let data=res.data.data
@@ -47,6 +52,16 @@
           });
         }
       })
+    },
+    methods:{
+      goCity(){
+        this.$router.push({path:'/city'})
+      },
+      goSearch() {
+        this.$router.push({
+          path: '/search'
+        })
+      },
     },
     components: {
       TabBar,

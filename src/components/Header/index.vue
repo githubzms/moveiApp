@@ -1,13 +1,17 @@
 <template>
   <div>
     <!-- @click-left="onClickLeft" -->
-    <van-nav-bar :title="title" fixed border @click-right="onClickRight" :left-arrow="left" >
+    <van-nav-bar fixed>
+        <slot slot="left"  name="left"></slot>
+        <slot slot="title" name="title"></slot>
+        <slot slot="right" name="right"></slot>
+      </van-nav-bar>
+   <!-- <van-nav-bar :title="title" fixed border @click-right="onClickRight">
       <van-icon name="search" slot="right" v-show="show" />
        <van-icon name="location-o" slot="left" v-if="show"  @click="goCity">
           {{$store.state.city.nm}}
        </van-icon>
-
-    </van-nav-bar>
+    </van-nav-bar> -->
   </div>
 </template>
 
@@ -23,23 +27,12 @@
         type: Boolean,
         default: true
       },
-      left: {
+      left:{
         type: Boolean,
         default: true
       }
     },
     methods: {
-      onClickRight() {
-        this.$router.push({
-          path: '/search'
-        })
-      },
-      // onClickLeft(){
-      //   history.go(-1)
-      // },
-      goCity(){
-        this.$router.push({path:'/city'})
-      }
     }
   }
 </script>

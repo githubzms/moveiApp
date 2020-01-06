@@ -1,10 +1,13 @@
 <template>
   <div>
-    <Header title="城市选择" :show="show" :left="left" />
+  <Header>
+        <van-icon name="arrow-left" color="#1989fa" slot="left" @click="goback"/>
+        <div slot="title" class="van-nav-bar__title van-ellipsis">城市选择</div>
+  </Header>
     <van-loading type="spinner" color="#f00" v-if="loading"/>
     <div id="content" v-else>
-      <van-index-bar :sticky="false">
-        <van-index-anchor v-for="item in cityData" :key="item.id" :index="item.index">
+      <van-index-bar :sticky="false" @select="selectInfo">
+        <van-index-anchor v-for="item in cityData" :key="item.id" :index="item.index" >
           <span class="indexWord">{{item.index}}</span>
           <van-cell :title="list.nm" v-for="list in item.list" :key="list.id" @click="chooseCity(list)" />
         </van-index-anchor>
@@ -47,8 +50,15 @@
       }
     },
     methods: {
+      goback(){
+        this.$router.back()
+      },
       selectInfo(e) {
         console.log(e);
+        this.$toast({
+          message:e,
+              duration:500
+        });
       },
       chooseCity(city) {
         let nm=city.nm,id=city.id;

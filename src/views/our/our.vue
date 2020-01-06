@@ -1,6 +1,8 @@
 <template>
   <div>
-     <Header title="个人中心" :show="show" :left="left"/>
+    <Header>
+          <div slot="title" class="van-nav-bar__title van-ellipsis">个人中心</div>
+    </Header>
       <div id="content">
         <div class="noIn">
           <Login/>

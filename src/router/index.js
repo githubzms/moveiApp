@@ -4,56 +4,70 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path:'*',
-    redirect:'/move'
+const routes = [{
+    path: '*',
+    redirect: '/move'
   },
-	{
-		path:"/move",
-    name:'move',
-		component:()=>import("@/views/move/move"),
-	},
-	{
-		path:'/list',
-		component:()=>import('@/views/list/list'),
-    children:[
-      {
-        path:'',
-         components:{
-           listcard:()=>import('@/components/ListCard'),
-           jlist:()=>import('@/components/Jlist'),
-         }
+  {
+    path: "/move",
+    name: 'move',
+    component: () => import("@/views/move/move"),
+  },
+  {
+    path: '/list',
+    component: () => import('@/views/list/list'),
+    children: [{
+        path: '',
+        components: {
+          listcard: () => import('@/components/ListCard'),
+          jlist: () => import('@/components/Jlist'),
+        }
       },
       {
-        path:'detail/:moveId',
-        component:()=>import("@/views/list/detail"),
+        path: 'detail/:moveId',
+        component: () => import("@/views/list/detail"),
         // 多个router-view使用components props也要单独配置
-        components:{
-          detail:()=>import("@/views/list/detail")
+        components: {
+          detail: () => import("@/views/list/detail")
         },
-        props:{
-          default:()=>import('@/views/list/list'),
-          detail:true
+        props: {
+          default: () => import('@/views/list/list'),
+          detail: true
         }
       },
     ],
-	},{
-		path:'/our',
-		component:()=>import('@/views/our/our')
-	},
-  {
-  	path:'/search',
-  	component:()=>import('@/views/search')
+  }, {
+    path: '/our',
+    component: () => import('@/views/our'),
+    children: [{
+      path: 'center',
+      component: () => import('@/views/our/center.vue')
+    }, {
+      path: 'login',
+      component: () => import('@/components/Login')
+    }, {
+      path: 'register',
+      component: () => import('@/components/Register')
+    }, {
+      path: 'updatePassword',
+      component: () => import('@/components/UpdatePassword')
+    },{
+      path:'/our',
+      redirect:'center'
+    } ]
   },
   {
-  	path:'/city',
-  	component:()=>import('@/views/city')
+    path: '/search',
+    component: () => import('@/views/search')
+  },
+  {
+    path: '/city',
+    component: () => import('@/views/city')
   },
 ]
 
 const router = new VueRouter({
-  mode:"history",
+  mode: "history",
   routes
 })
 

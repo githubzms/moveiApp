@@ -20,7 +20,7 @@
      />
    </van-cell-group>
      <div class="vanButton">
-       <van-button  type="danger">登录</van-button>
+       <van-button  type="danger" @click='postInfo'>登录</van-button>
      </div>
  </div>
 </template>
@@ -28,13 +28,35 @@
 <script>
   export default {
     name:'Login',
-    props:{
-      username:{
-        type:String
-      },
-      password:{
-        type:String
-      },
+    data(){
+      return{
+          username:'',
+          password:''
+      }
+    },
+    methods:{
+      postInfo(){
+        if(this.username==""){
+          this.$toast({
+            message:'请输入用户名或者邮箱',
+            duration:1000
+          });
+          return;
+        }
+        if(this.password==""){
+          this.$toast({
+            message:'请输入密码',
+            duration:1000
+          });
+          return;
+        }
+        this.axios.post('/api2/users/login',{
+         username: this.username,
+          password:this.password
+        }).then(res=>{
+          console.log(res);
+        })
+      }
     }
   }
 </script>

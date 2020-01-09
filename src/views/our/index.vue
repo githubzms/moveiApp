@@ -5,7 +5,7 @@
     </Header>
       <div id="content">
         <div class="noIn">
-          <Login/>
+         <router-view/>
         </div>
       </div>
     <TabBar />
@@ -26,13 +26,12 @@ export default{
   components: {
     TabBar,
     Header,
-    Login
   }
 }
 </script>
 
 <style scoped="scoped">
   .noIn{
-    margin-top: 30%;
+    /* margin-top: 30%; */
   }
 </style>

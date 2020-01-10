@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+<<<<<<< HEAD
 import axios from 'axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -55,6 +56,11 @@ Vue.use(Tag);
 Vue.filter('setWH',(url,arg)=>{
   return url.replace(/w\.h/,arg)
 })
+=======
+
+Vue.config.productionTip = false
+
+>>>>>>> ad20cc9f65b4597f5d7f1f9619eddd0ebc6a67be
 new Vue({
   router,
   store,
